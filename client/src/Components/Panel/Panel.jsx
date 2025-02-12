@@ -2,6 +2,7 @@ import './Panel.css';
 
 import PlusIcon from '../Assets/plus_icon.svg'
 import TrashIcon from '../Assets/trash_icon.svg'
+import Note from '../Note/Note';
 
 const Panel = (props) => {
    return (
@@ -16,6 +17,8 @@ const Panel = (props) => {
                <p>Drag Here to Delete</p>
             </button>
          </section>
+
+         <Note/>
       </main>
    )
 };

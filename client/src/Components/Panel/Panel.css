@@ -1,6 +1,8 @@
 .panel {
-   height: calc(100vh - 4rem);
+   position: relative;
+   height: 100%;
 
+   padding: 1rem 2rem;
 }
 
 .tollbar {
@@ -8,8 +10,6 @@
    justify-content: flex-end;
    align-items: center;
    gap: 1rem;
-
-   padding: 1rem 2rem;
 
    & button {
       all: unset;
@@ -22,6 +22,8 @@
 
       background: var(--primary);
       border-radius: .25rem;
+
+      cursor: pointer;
 
       & p {
          color: var(--white);
