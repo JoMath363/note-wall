@@ -9,30 +9,9 @@
    padding: 1rem;
 
    background: var(--blue);
-   box-shadow: 3px 3px 10px rgb(61, 61, 61);
-
-   overflow: hidden;
+   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
    cursor: pointer;
-
-   & button {
-      all: unset;
-
-      position: absolute;
-      top: -25px;
-      right: -25px;
-
-      width: 50px;
-      height: 50px;
-
-      transform: rotate(45deg);
-
-      background: var(--gray);
-
-      &:hover {
-         filter: brightness(120%);
-      }
-   }
 
    & h2 {
       font-weight: 500;
@@ -42,4 +21,104 @@
       font-weight: 300;
    }
 
+   & .title-input {
+      font-family: "Poppins", serif;
+      font-weight: 500;
+      font-size: 24px;
+
+      padding-left: 0;
+      padding-top: 0;
+
+      background: none;
+      border: none;
+      border-bottom: 2px solid var(--black);
+      outline: none;
+   }
+
+   & .description-input {
+      width: 100%;
+      padding: 0;
+
+      background: none;
+      border: none;
+      border-radius: 0;
+
+      font-size: 16px;
+      font-weight: 300;
+      font-family: "Poppins", serif;
+      outline: none;
+      
+      overflow-y: hidden;
+      resize: none;
+   }
+
+}
+
+.note-edit-btn {
+   all: unset;
+
+   position: absolute;
+   top: 0;
+   right: 0;
+
+   width: 0;
+   height: 0;
+
+   border-left: 30px solid transparent;
+   border-top: 30px solid var(--black);
+
+   &:hover {
+      border-top-color: var(--gray);
+   }
+}
+
+.note-editor {
+   position: absolute;
+   top: -4rem;
+   left: 0;
+
+   display: none;
+
+   width: 100%;
+   padding: .5rem 1rem;
+
+   background: var(--black);
+   border-radius: 10px;
+
+   & .color-btn {
+      all: unset;
+
+      height: 2rem;
+      width: 2rem;
+
+      border: 2px solid transparent;
+      border-radius: 1rem;
+
+      cursor: pointer;
+
+      &.active {
+         border: 2px solid var(--secondary);
+      }
+   }
+
+   & .delete-btn {
+      all: unset;
+      display: grid;
+      place-content: center;
+
+      padding: 0.2rem .5rem;
+
+      background: var(--secondary);
+      border-radius: 4px;
+   }
+
+   & button:hover {
+      filter: brightness(120%);
+   }
+
+   &.visible {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+   }
 }

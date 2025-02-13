@@ -2,37 +2,5 @@
    position: relative;
    height: 100%;
 
-   padding: 1rem 2rem;
-}
-
-.tollbar {
-   display: flex;
-   justify-content: flex-end;
-   align-items: center;
-   gap: 1rem;
-
-   & button {
-      all: unset;
-
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-
-      padding: .5rem 1rem;
-
-      background: var(--primary);
-      border-radius: .25rem;
-
-      cursor: pointer;
-
-      & p {
-         color: var(--white);
-         font-size: 18px;
-      }
-   }
-
-   & .trash {
-      display: none;
-      background: var(--secondary);
-   }
+   padding: 5rem 2rem;
 }
