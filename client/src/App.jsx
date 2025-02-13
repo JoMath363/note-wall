@@ -1,16 +1,12 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Home from './Pages/Home'
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Home/>
-  },
-])
+import Header from "./Components/Header/Header"
+import Panel from "./Components/Panel/Panel"
 
 function App() {
   return (
-    <RouterProvider router={router}/>
+    <>
+      <Header />
+      <Panel />
+    </>
   )
 }
 

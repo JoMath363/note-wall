@@ -1,12 +1,15 @@
 import './Note.css';
 import TrashIcon from '../Assets/trash_icon.svg'
-import { use, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
+import { NotesContext } from '../../context';
 
 const Note = (props) => {
+   const { notes, setNotes } = useContext(NotesContext);
+
    const [editorVisible, setEditorVisible] = useState(false);
-   const [backgroundColor, setBackgroundColor] = useState(props.color)
-   const [noteTitle, setNoteTitle] = useState(props.title)
-   const [noteDescription, setNoteDescription] = useState(props.description)
+   const [backgroundColor, setBackgroundColor] = useState(props.color);
+   const [title, setTitle] = useState(props.title);
+   const [description, setDescription] = useState(props.description);
 
    const changeBackgroundColor = (e, color) => {
       const color_btns = document.getElementsByClassName('color-btn');
@@ -18,28 +21,46 @@ const Note = (props) => {
       e.target.classList.add('active');
 
       setBackgroundColor(color);
+
+      console.log(notes)
+   }
+
+   const deleteNote = () => {
+      const newNotes = notes.filter((_, i) => i !== props.index);
+      console.log(newNotes)
+      setNotes(newNotes);
    }
 
    return (
-      <div className='note' style={{ background: backgroundColor }}>
+      <div className='note' style={{ background: backgroundColor }} >
          <div className={editorVisible ? 'note-editor visible' : 'note-editor'} >
-            <button className='color-btn active' style={{ background: 'var(--note-clr-1)' }} onClick={(e) => changeBackgroundColor(e, 'var(--note-clr-1)')}></button>
-            <button className='color-btn' style={{ background: 'var(--note-clr-2)' }} onClick={(e) => changeBackgroundColor(e, 'var(--note-clr-2)')}></button>
-            <button className='color-btn' style={{ background: 'var(--note-clr-3)' }} onClick={(e) => changeBackgroundColor(e, '-var(--note-clr-3)')}></button>
-            <button className='color-btn' style={{ background: 'var(--note-clr-4)' }} onClick={(e) => changeBackgroundColor(e, 'var(--note-clr-4)')}></button>
-            <button className='delete-btn'>
+            <button className='color-btn active' style={{ background: 'var(--note-clr-1)' }}
+               onClick={(e) => changeBackgroundColor(e, 'var(--note-clr-1)')} />
+            <button className='color-btn' style={{ background: 'var(--note-clr-2)' }}
+               onClick={(e) => changeBackgroundColor(e, 'var(--note-clr-2)')} />
+            <button className='color-btn' style={{ background: 'var(--note-clr-3)' }}
+               onClick={(e) => changeBackgroundColor(e, 'var(--note-clr-3)')} />
+            <button className='color-btn' style={{ background: 'var(--note-clr-4)' }}
+               onClick={(e) => changeBackgroundColor(e, 'var(--note-clr-4)')} />
+
+            <button className='delete-btn' onClick={deleteNote}>
                <img src={TrashIcon} alt="Trash Icon" />
             </button>
          </div>
 
          <button className='note-edit-btn' onClick={() => setEditorVisible(!editorVisible)} />
 
-         <input className='title-input' type="text" value={noteTitle} onChange={(e) => setNoteTitle(e.target.value)} />
+         <input className='title-input'
+            type="text" value={title}
+            placeholder='Insert a Title...'
+            onChange={(e) => setTitle(e.target.value)} />
+
          <textarea
             className="description-input"
-            value={noteDescription}
-            onChange={(e) => setNoteDescription(e.target.value)}
-         />
+            value={description}
+            rows={10}
+            placeholder='Type Something Here...'
+            onChange={(e) => setDescription(e.target.value)} />
       </div >
    )
 };
