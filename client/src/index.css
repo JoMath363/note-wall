@@ -8,10 +8,10 @@
   --background: #9F5255;
   --surface: #7C444F;
   --gray: #D2D2D2;
-  --blue: #7F9BD4;
-  --pink: #FDC7C7;
-  --yellow: #F9F2BB;
-  --purple: #D697C1;
+  --note-clr-1: #7F9BD4;
+  --note-clr-2: #FDC7C7;
+  --note-clr-3: #F9F2BB;
+  --note-clr-4: #D697C1;
 }
 
 * {
