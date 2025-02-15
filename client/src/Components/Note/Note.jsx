@@ -1,10 +1,10 @@
 import './Note.css';
 import TrashIcon from '../Assets/trash_icon.svg'
-import { useContext, useState } from 'react';
-import { NotesContext } from '../../context';
+import { useState } from 'react';
+import { useNotes } from '../../context';
 
 const Note = (props) => {
-   const { notes, setNotes } = useContext(NotesContext);
+   const { removeNoteById } = useNotes();
 
    const [editorVisible, setEditorVisible] = useState(false);
    const [backgroundColor, setBackgroundColor] = useState(props.color);
@@ -25,12 +25,6 @@ const Note = (props) => {
       console.log(notes)
    }
 
-   const deleteNote = () => {
-      const newNotes = notes.filter((_, i) => i !== props.index);
-      console.log(newNotes)
-      setNotes(newNotes);
-   }
-
    return (
       <div className='note' style={{ background: backgroundColor }} >
          <div className={editorVisible ? 'note-editor visible' : 'note-editor'} >
@@ -43,7 +37,7 @@ const Note = (props) => {
             <button className='color-btn' style={{ background: 'var(--note-clr-4)' }}
                onClick={(e) => changeBackgroundColor(e, 'var(--note-clr-4)')} />
 
-            <button className='delete-btn' onClick={deleteNote}>
+            <button className='delete-btn' onClick={() => removeNoteById(props.id)}>
                <img src={TrashIcon} alt="Trash Icon" />
             </button>
          </div>

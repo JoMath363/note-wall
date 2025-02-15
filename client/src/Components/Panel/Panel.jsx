@@ -1,14 +1,13 @@
 import './Panel.css';
 import Note from '../Note/Note';
-import { useContext, useEffect } from 'react';
-import { NotesContext } from '../../context';
+import { useNotes } from '../../context';
 
 const Panel = (props) => {
-   const {notes, setNotes } = useContext(NotesContext)
+   const { notes } = useNotes();
 
    return (
       <main className='panel'>
-         {notes.map((data, i) => <Note key={i} index={i} {...data}/>)}
+         {notes.map((note) => <Note key={note.id} {...note}/>)}
       </main>
    )
 };

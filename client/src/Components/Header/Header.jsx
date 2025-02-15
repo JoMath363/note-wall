@@ -2,18 +2,11 @@ import './Header.css';
 import NoteIcon from '../Assets/note_icon.svg';
 import GearIcon from '../Assets/gear_icon.svg';
 import PlusIcon from '../Assets/plus_icon.svg'
-import { useContext } from 'react';
-import { NotesContext } from '../../context';
+import { useNotes } from '../../context';
 
 
 const Header = (props) => {
-   const {notes, setNotes } = useContext(NotesContext)
-
-   const newNote = {
-      title: '',
-      description: '',
-      color: 'var(--note-clr-1)',
-   }
+   const { notes, addNote } = useNotes();
 
    return (
       <header className='header'>
@@ -23,11 +16,11 @@ const Header = (props) => {
          </div>
 
          <div className='header-left'>
-            <button onClick={() => setNotes((notes) => [...notes, newNote])}>
+            <button onClick={addNote}>
                <img src={PlusIcon} alt="Plus Icon" />
                <p>Add Note</p>
             </button>
-            <img className='icon' src={GearIcon} alt="Gear Icon" />
+            <img className='icon' src={GearIcon} alt="Gear Icon" onClick={() => console.table(notes)}/>
          </div>
       </header>
    )
