@@ -6,46 +6,39 @@ import { useNotes } from '../../context';
 const Note = (props) => {
    const { removeNoteById } = useNotes();
 
-   const [editorVisible, setEditorVisible] = useState(false);
-   const [backgroundColor, setBackgroundColor] = useState(props.color);
+   const [editorMode, setEditorMode] = useState(false);
+   const [color, setColor] = useState(props.color);
    const [title, setTitle] = useState(props.title);
    const [description, setDescription] = useState(props.description);
 
-   const changeBackgroundColor = (e, color) => {
-      const color_btns = document.getElementsByClassName('color-btn');
-
-      for (let i = 0; i < color_btns.length; i++) {
-         color_btns[i].classList.remove('active');
-      }
-
-      e.target.classList.add('active');
-
-      setBackgroundColor(color);
-
-      console.log(notes)
+   const toogleEditorMode = () => {
+      setEditorMode(!editorMode)
    }
 
    return (
-      <div className='note' style={{ background: backgroundColor }} >
-         <div className={editorVisible ? 'note-editor visible' : 'note-editor'} >
-            <button className='color-btn active' style={{ background: 'var(--note-clr-1)' }}
-               onClick={(e) => changeBackgroundColor(e, 'var(--note-clr-1)')} />
-            <button className='color-btn' style={{ background: 'var(--note-clr-2)' }}
-               onClick={(e) => changeBackgroundColor(e, 'var(--note-clr-2)')} />
-            <button className='color-btn' style={{ background: 'var(--note-clr-3)' }}
-               onClick={(e) => changeBackgroundColor(e, 'var(--note-clr-3)')} />
-            <button className='color-btn' style={{ background: 'var(--note-clr-4)' }}
-               onClick={(e) => changeBackgroundColor(e, 'var(--note-clr-4)')} />
+      <div className='note' style={{ background: color }} >
+         <div className={editorMode ? 'note-editor visible' : 'note-editor'} >
+            <div className='color-selector'>
+               {
+                  [...Array(4)].map((_, i) => `var(--note-clr-${i + 1})`).map((button, i) =>
+                     <button
+                        className={button == color ? 'color-btn active' : 'color-btn'}
+                        style={{ background: button }} key={i}
+                        onClick={() => setColor(button)} />
+                  )
+               }
+            </div>
 
             <button className='delete-btn' onClick={() => removeNoteById(props.id)}>
                <img src={TrashIcon} alt="Trash Icon" />
             </button>
          </div>
 
-         <button className='note-edit-btn' onClick={() => setEditorVisible(!editorVisible)} />
+         <button className='note-edit-btn' onClick={toogleEditorMode} />
 
          <input className='title-input'
             type="text" value={title}
+            readOnly={!editorMode}
             placeholder='Insert a Title...'
             onChange={(e) => setTitle(e.target.value)} />
 
@@ -53,6 +46,7 @@ const Note = (props) => {
             className="description-input"
             value={description}
             rows={10}
+            readOnly={!editorMode}
             placeholder='Type Something Here...'
             onChange={(e) => setDescription(e.target.value)} />
       </div >
