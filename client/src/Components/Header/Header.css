@@ -33,7 +33,7 @@
       align-items: center;
       gap: 0.5rem;
 
-      padding: .5rem 1rem;
+      padding: .3rem .8rem;
 
       background: var(--primary);
       border-radius: .25rem;
@@ -43,6 +43,11 @@
       & p {
          color: var(--white);
          font-size: 18px;
+      }
+
+      & img {
+         height: 2rem;
+         width: 1.5rem;
       }
    }
 }

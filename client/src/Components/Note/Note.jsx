@@ -4,14 +4,25 @@ import { useState } from 'react';
 import { useNotes } from '../../context';
 
 const Note = (props) => {
-   const { removeNoteById } = useNotes();
+   const { removeNoteById, attNoteById } = useNotes();
 
    const [editorMode, setEditorMode] = useState(false);
-   const [color, setColor] = useState(props.color);
    const [title, setTitle] = useState(props.title);
    const [description, setDescription] = useState(props.description);
+   const [color, setColor] = useState(props.color);
 
    const toogleEditorMode = () => {
+      if (editorMode) {
+         const attNote = {
+            id: props.id,
+            title: title,
+            description: description,
+            color: color
+         }
+
+         attNoteById(attNote);
+      }
+
       setEditorMode(!editorMode)
    }
 
@@ -20,11 +31,11 @@ const Note = (props) => {
          <div className={editorMode ? 'note-editor visible' : 'note-editor'} >
             <div className='color-selector'>
                {
-                  [...Array(4)].map((_, i) => `var(--note-clr-${i + 1})`).map((button, i) =>
+                  [...Array(4)].map((_, i) => `var(--note-clr-${i + 1})`).map((btnColor, i) =>
                      <button
-                        className={button == color ? 'color-btn active' : 'color-btn'}
-                        style={{ background: button }} key={i}
-                        onClick={() => setColor(button)} />
+                        className={btnColor == color ? 'color-btn active' : 'color-btn'}
+                        style={{ background: btnColor }} key={i}
+                        onClick={() => setColor(btnColor)} />
                   )
                }
             </div>
@@ -36,18 +47,19 @@ const Note = (props) => {
 
          <button className='note-edit-btn' onClick={toogleEditorMode} />
 
-         <input className='title-input'
+         <input 
+            className={editorMode ? 'title-input active' : 'title-input'}
             type="text" value={title}
             readOnly={!editorMode}
-            placeholder='Insert a Title...'
+            placeholder={editorMode ? 'Insert a Title...' : ''}
             onChange={(e) => setTitle(e.target.value)} />
 
          <textarea
-            className="description-input"
+            className={editorMode ? 'description-input active' : 'description-input'}
             value={description}
             rows={10}
             readOnly={!editorMode}
-            placeholder='Type Something Here...'
+            placeholder={editorMode ? 'Type Something Here...' : ''}
             onChange={(e) => setDescription(e.target.value)} />
       </div >
    )
