@@ -33,7 +33,7 @@ const Note = (props) => {
                {
                   [...Array(4)].map((_, i) => `var(--note-clr-${i + 1})`).map((btnColor, i) =>
                      <button
-                        className={btnColor == color ? 'color-btn active' : 'color-btn'}
+                        className={btnColor == color ? 'color-btn selected' : 'color-btn'}
                         style={{ background: btnColor }} key={i}
                         onClick={() => setColor(btnColor)} />
                   )

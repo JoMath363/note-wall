@@ -19,35 +19,145 @@
       font-size: 1.8rem;
       font-weight: 400;
    }
+
+   & img {
+      height: 2.5rem;
+      width: 2.5rem;
+   }
 }
 
 .header-left {
    display: flex;
    align-items: center;
    gap: 1rem;
+}
 
-   & button {
-      all: unset;
+.add-note-btn {
+   all: unset;
 
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+   display: flex;
+   align-items: center;
+   gap: 0.2rem;
 
-      padding: .3rem .8rem;
+   padding: .2rem .6rem;
 
-      background: var(--primary);
-      border-radius: .25rem;
+   border: 2px solid var(--white);
+   border-radius: 8px;
 
-      cursor: pointer;
+   cursor: pointer;
 
-      & p {
-         color: var(--white);
-         font-size: 18px;
-      }
-
-      & img {
-         height: 2rem;
-         width: 1.5rem;
-      }
+   & p {
+      color: var(--white);
+      font-size: 18px;
    }
+
+   & img {
+      height: calc(2.5rem - 4px);
+      width: 1.8rem;
+   }
+
+   &:hover {
+      background: var(--primary);
+      border: 2px solid var(--primary);
+   }
+
+   &:active {
+      filter: brightness(120%);
+   }
+}
+
+.settings {
+   position: relative;
+
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+& #settings-btn {
+   all: unset;
+
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
+   padding: .2rem;
+
+   border-radius: 8px;
+
+   cursor: pointer;
+
+   & img {
+      height: 2.5rem;
+      width: 2.5rem;
+   }
+
+   &:hover {
+      background-color: var(--primary);
+   }
+
+   &:active {
+      filter: brightness(120%);
+   }
+
+   &.active {
+      background-color: var(--primary);
+      border-radius: 8px;
+   }
+}
+
+& #settings-box {
+   position: absolute;
+   top: calc(100% + 1.5rem);
+   right: 0;
+   z-index: 2;
+
+   display: none;
+
+   padding: 1rem;
+
+   border-radius: 8px;
+
+   background: var(--surface);
+
+   &.active {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+   }
+}
+
+& .theme-btn {
+   all: unset;
+
+   display: flex;
+   gap: .2rem;
+
+   padding: .3rem .4rem;
+
+
+   background-color: rgba(255, 255, 255, 0.1);
+   border-radius: 8px;
+
+   cursor: pointer;
+
+   &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+   }
+
+   &:active {
+      filter: brightness(120%);
+   }
+
+   &.selected {
+      border: 1px solid var(--primary);
+   }
+
+   & span {
+      width: 2rem;
+      height: 2rem;
+
+      border-radius: 1rem;
+   }
+
 }
