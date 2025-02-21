@@ -1,4 +1,5 @@
 Note Wall
+
 📝 About
 
 Note-Wall is a note list website that allows you to change its color theme, create notes, and edit them. The project utilizes various React concepts, including state management, component-based architecture, and hooks, to create an interactive and dynamic user experience.
